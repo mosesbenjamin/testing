@@ -1,7 +1,10 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+// import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen} from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 
-import App from './App';
+// import App from './App';
+import Search from './components/Search';
 
 
 // // Jest is a test runner
@@ -42,6 +45,10 @@ import App from './App';
 // // RTL is one of the testing libraries
 // // to test React Components
 
+// testing whether an element rendered (or not) in a React component
+// with getBy (and queryBy) and whether the re-rendered React 
+// component has a desired element (findBy). 
+
 // // Rendering a component
 
 // describe('App', ()=>{
@@ -78,19 +85,112 @@ import App from './App';
 // Search Types
 
 // Labeltext <label for="search" />
-// paceholderText  <input placeholder="Search" />
+// placeholderText  <input placeholder="Search" />
 // AltText   <img alt="profile" />
 // DisplayValue   <input value="JavaScript" />
 // TestId ...data-testid in the source code's HTML
 
-describe('App', ()=>{
-  test('renders App component', () => {
-    render(<App />);
+// describe('App', ()=>{
+//   test('renders App component', () => {
+//     render(<App />);
 
-    expect(screen.getByRole('textbox')).toBeInTheDocument();
-  })
+//     expect(screen.getByRole('textbox')).toBeInTheDocument();
+//   })
   
-})
+// })
+
+// // using  FindBy
+// describe('App', ()=>{
+//   test('renders', async ()=>{
+//     render(<App />);
+//     screen.debug();
+
+//     expect(screen.queryByText(/Signed in as/)).toBeNull();
+//     screen.debug();
+
+//     expect( await screen.findByText(/Signed in as/)).toBeInTheDocument();
+//     screen.debug();
+//   })
+// })
+
+
+// Multiple Items
+
+//getAllBy
+//queryAllBy
+//findAllBy
+
+//Assertive functions
+//toBeNull()
+//toBeInTheDocument()
+
+
+// user interactions
+
+
+// // FireEvent
+
+// describe('App', ()=>{
+//   test('renders', async()=>{
+//     render(<App />);
+//     // screen.debug();
+
+//     //Wait for user to resolve
+//     await screen.findByText(/Signed in as/)
+
+//     expect(screen.queryByText(/Searches for JavaScript/)).toBeNull();
+
+//     fireEvent.change(screen.getByRole('textbox'), {
+//       target: { value: 'JavaScript' }
+//     })
+    
+//     expect(screen.getByText('Searches for JavaScript')).toBeInTheDocument();
+//   })
+// })
+
+// describe('App', ()=>{
+//   test('render the app component', async() =>{
+//     render(<App />);
+
+//     // wait for user to resolve
+
+//     await screen.findByText(/Signed in as/);
+
+//     expect(screen.queryByText(/Searches for JavaScript/)).toBeNull();
+
+//     await userEvent.type( screen.getByRole('textbox'), 'JavaScript' );
+
+//     expect(screen.getByText('Searches for JavaScript')).toBeInTheDocument();
+//   })
+// })
+
+// Callback Handlers
+
+describe('Search', () => {
+  test('calls the onChange callback handler', async () => {
+    const onChange = jest.fn();
+ 
+    render(
+      <Search value="" onChange={onChange}>
+        Search:
+      </Search>
+    );
+
+    // fireEvent.change(screen.getByRole('textbox'), {
+    //         target: { value: 'JavaScript' }
+    //       })
+    // expect(onChange).toHaveBeenCalledTimes(1);      
+ 
+    await userEvent.type(screen.getByRole('textbox'), 'JavaScript');
+ 
+    expect(onChange).toHaveBeenCalledTimes(10);
+
+  });
+});
+
+
+
+
 
 
 
