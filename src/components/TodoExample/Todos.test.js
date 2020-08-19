@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, fireEvent, within } from '@testing-library/react';
+import { render, fireEvent, within, screen } from '@testing-library/react';
 import "@testing-library/jest-dom/extend-expect";
 
 import Todos from './Todos';
@@ -36,5 +36,59 @@ describe('Todo', ()=>{
         fireEvent.click(removeButton);
 
         expect(queryByText(todos[1].name)).not.toBeInTheDocument();
+    })
+
+    test('Marks a to-do as done', ()=>{
+        //Arrange
+        const todos = [
+            { name: "Read Master React Testing", done: false },
+            { name: "Buy groceries", done: true }
+        ]
+        const { getByTestId } = render(<Todos todos={todos} />);
+
+        const firstTodoItem =  within(getByTestId("todo-0")).getByTestId("checkbox");
+        //Assert
+        expect(firstTodoItem.checked).toBe(false);
+        //Act
+        fireEvent.click(firstTodoItem);
+        //Assert
+        expect(firstTodoItem.checked).toBe(true);
+    })
+
+    test('filters to-dos', ()=>{
+        //Arrange
+        const todos = [
+            { name: "Read Master React Testing", done: false },
+            { name: "Buy groceries", done: true },
+            { name: "Walk the dog", done: false }
+        ];
+        const activeTodos = [ todos[0], todos[2] ];
+        const doneTodo = todos[1];
+
+        const {getByText, queryByText} = render(<Todos todos={todos} />);
+        const activeFilter = getByText(/active/i);
+        const doneFilter = getByText(/done/i)
+
+        //displays all todos by default
+
+        todos.forEach(todo=>{
+            expect(queryByText(todo.name)).toBeInTheDocument();
+        })
+
+
+        fireEvent.click(activeFilter);
+        activeTodos.forEach(activeTodo =>{
+            expect(queryByText(activeTodo.name)).toBeInTheDocument();
+        })
+        
+        expect(queryByText(doneTodo.name)).not.toBeInTheDocument()
+
+        fireEvent.click(doneFilter);
+        activeTodos.forEach(activeTodo =>{
+            expect(queryByText(activeTodo.name)).not.toBeInTheDocument();
+        })
+
+        expect(queryByText(doneTodo.name)).toBeInTheDocument();
+
     })
 })
