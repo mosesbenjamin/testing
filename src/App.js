@@ -2,7 +2,8 @@ import React from 'react';
 import './App.css';
 
 // import Search from './components/Search';
-import Stories from './components/Stories/Stories';
+// import Stories from './components/Stories/Stories';
+import Todos from './components/TodoExample/Todos'
 
 // function App() {
 
@@ -42,7 +43,7 @@ const App = ()=> {
   // }, [])
 
   return (
-      <div>
+      <div className="App">
 
         {/* { user ? <p>Signed in as { user.name}</p> : null}
 
@@ -53,7 +54,8 @@ const App = ()=> {
 
         <p>Searches for { search ? search : '...'}</p> */}
         
-        <Stories />
+        {/* <Stories /> */}
+        <Todos />
       </div>
   );
 }

@@ -1,0 +1,48 @@
+.input {
+    outline: none;
+    border-radius: 0.3em;
+}
+
+.list-todo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.todo-item{
+    margin: 1em;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+}
+
+.todo-item input {
+    cursor: pointer;
+}
+
+.todo-infos{
+    padding: 1em;
+}
+
+.todo-infos span {
+    margin-right: 0.4em;
+}
+
+.todo-infos button {
+    cursor: pointer;
+}
+
+.list-filters {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+}
+
+.list-filters .filter{
+    cursor: pointer;
+}
