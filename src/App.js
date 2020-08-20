@@ -1,9 +1,10 @@
 import React from 'react';
 import './App.css';
+import Posts from './components/PostExample/Posts';
 
 // import Search from './components/Search';
 // import Stories from './components/Stories/Stories';
-import Todos from './components/TodoExample/Todos'
+// import Todos from './components/TodoExample/Todos'
 
 // function App() {
 
@@ -55,7 +56,8 @@ const App = ()=> {
         <p>Searches for { search ? search : '...'}</p> */}
         
         {/* <Stories /> */}
-        <Todos />
+        {/* <Todos /> */}
+        <Posts />
       </div>
   );
 }
