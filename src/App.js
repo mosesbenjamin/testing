@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
-import Posts from './components/PostExample/Posts';
+// import Posts from './components/PostExample/Posts';
+import Fetch from './components/RTL-L-H/Main/Fetch';
 
 // import Search from './components/Search';
 // import Stories from './components/Stories/Stories';
@@ -57,7 +58,8 @@ const App = ()=> {
         
         {/* <Stories /> */}
         {/* <Todos /> */}
-        <Posts />
+        {/* <Posts /> */}
+        <Fetch />
       </div>
   );
 }
